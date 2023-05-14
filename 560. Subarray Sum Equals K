@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        // 1. brute force TC=O(N^3)
+        //    get all subarrays and get sum
+        // for(i=0 to i<n){
+        //     for(j=i;j<n){
+        //         sum=0
+        //         for(k=i to j){
+        //             sum+=arr[k];
+        //         }
+        //     }
+        // }
+
+        //    2.  first optimisation  O(N^2)
+        //       no for loop for k
+        //       add current element to sum ( sum+=arr[j] )
+        
+        //    3. most optimal : prefix sum
+        //prefix sum = s and find k sum subarray:
+        //find how many s-k sums are present = number of subarrays ending at that point
+        map<int,int>m;
+        m[0]=1;
+        int ckt=0;
+        int prefixsum=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            prefixsum+=nums[i];
+            int remove=prefixsum-k;
+            //add the number of times 'remove' has occured
+            //(we have stored its frequency in map)
+            //because the number of removes = number of subarrays ending at that point
+            ckt+=m[remove];
+            m[prefixsum]+=1;//increae count of that prefixsum
+        }
+        return ckt;
+         
+
+    }
+};
