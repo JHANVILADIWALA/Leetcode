@@ -8,6 +8,8 @@ public:
             m[grid[i]]++;
         }
         int ans=0;
+        
+        
         for(int i=0 ; i<grid[0].size() ; i++ ){
             //getting column in a vector 
             vector<int>v;
