@@ -1,6 +1,22 @@
 class Solution {
 public:
-    bool isSubsetSum(vector<int>arr, int sum){
+   
+    bool canPartition(vector<int>& nums) {
+        //get total sum
+        // if odd -> can never be divided ->return false
+        // else ->check if its possible to get subset with sum as sum/2
+        
+        int sum=0;
+        int n = nums.size();
+        for(int i=0; i<n; i++) sum+=nums[i];
+        
+        if( sum%2!=0 ) return false;
+        else{
+            if( isSubsetSum(nums, sum/2 )==true )return true;
+            else return false;
+        }  
+    }
+     bool isSubsetSum(vector<int>arr, int sum){
          int n = arr.size();
          bool t[n+1][sum+1];
          
@@ -29,21 +45,5 @@ public:
              }
          }
          return t[n][sum];
-    }
-    bool canPartition(vector<int>& nums) {
-        //get total sum
-        // if odd -> can never be divided ->return false
-        // else ->check if its possible to get subset with sum as sum/2
-        
-        int sum=0;
-        int n = nums.size();
-        for(int i=0; i<n; i++) sum+=nums[i];
-        
-        if( sum%2!=0 ) return false;
-        else{
-            if( isSubsetSum(nums, sum/2 )==true )return true;
-            else return false;
-        } 
-        
     }
 };
