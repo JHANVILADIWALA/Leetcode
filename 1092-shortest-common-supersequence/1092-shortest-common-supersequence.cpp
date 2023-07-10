@@ -1,7 +1,7 @@
 class Solution {
 public:
     string lcs(string x, string y, int n, int m){
-        
+         /////LENGTH OF SUPRSEQUENCE : m+n-lengthofLCS
         //LCS TABLE MAKING
         int t[n+1][m+1];
         //first row and first col 0
