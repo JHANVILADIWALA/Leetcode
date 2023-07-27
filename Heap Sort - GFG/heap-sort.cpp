@@ -12,83 +12,62 @@ class Solution
 {
     public:
     //Heapify function to maintain heap property.
-    void heapify(int arr[], int n, int i)  
+    void heapify(int arr[], int N, int i)  
     {
-       int cur=arr[i];
-       int par=arr[(i-1)/2];
-       
-       while(i>0 && par<cur){ //i>0 means its not the root node
-           swap( arr[(i-1)/2] , arr[i] ); //swap parent position and cur position
-           i=(i-1)/2; //move to new cur which was parent
-           
-           // updating new values
-           cur=arr[i];
-           if(i>0){
-               par=arr[(i-1)/2];
-           }
-       }
+      // Initialize largest as root
+    int largest = i;
+ 
+    // left = 2*i + 1
+    int l = 2 * i + 1;
+ 
+    // right = 2*i + 2
+    int r = 2 * i + 2;
+ 
+    // If left child is larger than root
+    if (l < N && arr[l] > arr[largest])
+        largest = l;
+ 
+    // If right child is larger than largest
+    // so far
+    if (r < N && arr[r] > arr[largest])
+        largest = r;
+ 
+    // If largest is not root
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+ 
+        // Recursively heapify the affected
+        // sub-tree
+        heapify(arr, N, largest);
+    }
     }
 
     public:
     //Function to build a Heap from array.
     void buildHeap(int arr[], int n)  
     { 
-        //add all elements to heap
-        //not including 0th element bz no change is made
-       for(int i=1; i<n; i++){
-           heapify(arr,n,i); //ensures all property satisfied
-       }
+    // Your Code Here
     }
 
     
     public:
     //Function to sort an array using Heap Sort.
-    void heapSort(int arr[], int n)
+    void heapSort(int arr[], int N)
     {
-        buildHeap(arr,n);
-        
-        int end=n; //not allowed position
-        
-        while(end>0){
-            swap(arr[0],arr[--end]);
-            
-             int ind=0; //root node
-             int cur=arr[ind];
-             
-             int c1=-1,c2=-1; //children
-             
-             //index of left child < not possible index
-             if(ind*2+1<end)c1=arr[ind*2+1];
-             
-             //right child
-             if(ind*2+2<end)c2=arr[ind*2+2];
-             
-             while(c1>cur || c2>cur){ //we want all children small bz max heap
-                //continue till children are small
-                
-                //left child is greatest among 3 
-                if(c1>c2 && c1>cur){
-                    //swap left child and cur
-                    swap( arr[ind*2+1], arr[ind] );
-                    ind=ind*2+1;
-                }
-                else if(c2>cur){ //swap right child and cur
-                    swap( arr[ind*2+2], arr[ind] );
-                    ind=ind*2+2;
-                }
-                
-                //updating new children 
-                c1=-1,c2=-1; //children
-             
-                //index of left child < not possible index
-                if(ind*2+1<end)c1=arr[ind*2+1];
-             
-                //right child
-                if(ind*2+2<end)c2=arr[ind*2+2];
-                
-             }
-             
-        }
+        // Build heap (rearrange array)
+    for (int i = N / 2 - 1; i >= 0; i--)
+        heapify(arr, N, i);
+ 
+    // One by one extract an element
+    // from heap
+    for (int i = N - 1; i > 0; i--) {
+ 
+        // Move current root to end
+        swap(arr[0], arr[i]);
+ 
+        // call max heapify on the reduced heap
+        heapify(arr, i, 0);
+    }
     }
 };
 
