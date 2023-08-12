@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // Time complexity: O(n)
+    // Space complexity: O(1)
     int subarr(vector<int>& nums, int k){
         int left=0, right=0, n=nums.size();
         
