@@ -132,7 +132,7 @@ public:
             if(curr->right!=NULL){
                 q.push({curr->right, level+1});
             }
-            if(!curr->left && !curr->right){
+            if(curr->left==NULL && curr->right==NULL){
                 if(level<=budget){
                     budget-=level;
                     ans++;
