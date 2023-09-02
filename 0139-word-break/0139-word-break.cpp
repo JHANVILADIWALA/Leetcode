@@ -1,48 +1,26 @@
 class Solution {
 public:
-    bool rec(int ind, string&s, unordered_map<string,int>&m, vector<int>&dp){
-        //base case
-        if(ind==s.size())return true;
-        
-        if(dp[ind]!=-1){//means already calculated
-           if(dp[ind]==1)return true;
-            else return false;
-        }
-        
-        string temp;
+    bool fn(int i, string s, map<string,int>m , vector<int>&dp){
+        if(i==s.size())return true;
         bool ans=false;
+        if(dp[i]!=-1)return dp[i];
         
-        for(int i=ind; i<s.size(); i++){
-            temp+=s[i];
-            
-            if(m.find(temp)!=m.end()){ //means present in the map
-                ans = rec(i+1,s,m,dp);
-                //after recursion calls completed
-                if(ans==true){
-                    dp[ind]=true; 
-                    return true;
-                }
+        string temp="";
+        for(int k=i; k<s.size(); k++){
+            temp+=s[k];
+            if(m[temp]){ //pick
+                ans|= fn(k+1, s, m, dp);
             }
         }
-        if(ans==false)dp[ind]=0;
-        else dp[ind]=1;
-        
-        return ans;
+        return dp[i]=ans;
     }
-        
-    bool wordBreak(string s, vector<string>& w) {
-        
-        //dp vector
-        vector<int>dp(s.size(),-1);
-        //storing words given in map
-        unordered_map<string,int>m;
-        
-        for(int i=0; i<w.size(); i++){
-            m[w[i]]=0; //marking all given words as 0 in map
+    bool wordBreak(string s, vector<string>& d) {
+        map<string,int>m;
+        for(auto it:d){
+            m[it]++;
         }
-        
-        //recursive fn
-        bool ans=rec(0,s,m,dp);
-        return ans;
+        int n= s.size();
+        vector<int>dp(n+1, -1);
+        return fn(0, s, m, dp);
     }
 };
