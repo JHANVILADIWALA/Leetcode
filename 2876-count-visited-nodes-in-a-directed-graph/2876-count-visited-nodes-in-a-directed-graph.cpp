@@ -1,6 +1,5 @@
 class Solution {
 private:
-    // ........... topological sorting using dfs ............... //
     void dfs(vector<int> adj[], vector<bool> &vis, vector<int> &ans, int s){
 	    // base case
 	    if(vis[s])  return;
@@ -24,8 +23,7 @@ private:
 	    reverse(ans.begin(),ans.end());
 	    return ans;
 	}
-    // ...................................................... //
-    // for finding curr cycle length //
+    
     int find(vector<int> adj[], vector<bool>& vis, vector<int>& ret, int n, int s) {
         int re = 0;
         for(int u: adj[s]) {
@@ -46,11 +44,6 @@ public:
         }
         vector<int> topo = topoSort(n, adj);
         reverse(topo.begin(), topo.end());
-        // after calculating topo sort in reverse order
-        // first nodes will be cycle nodes so answer will
-        // be calculated for those nodes first, then nodes
-        // which have cycle nodes as child will have child ans + 1
-        // as answer
         vector<bool> vis(n, false);
         vector<int> ret(n, -1);
         for(int i: topo) {
