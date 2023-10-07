@@ -1,15 +1,13 @@
 class Solution {
 public:
     int fn(int i, vector<int>&dp){
-        if(i==0 || i==1)return 1;
+        if(i==1 || i==0)return 1;
+        
         if(dp[i]!=-1)return dp[i];
-        int a=fn(i-1, dp);
-        int b=fn(i-2, dp);
-        return dp[i]=a+b;
+        return dp[i]=fn(i-2,dp)+fn(i-1,dp);
     }
     int climbStairs(int n) {
-        vector<int>dp(n+1, -1);
-        // memset(dp,-1, sizeof(dp));
+        vector<int>dp(n+1,-1);
         return fn(n,dp);
     }
 };
