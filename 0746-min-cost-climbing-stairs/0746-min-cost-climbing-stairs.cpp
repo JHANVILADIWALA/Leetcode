@@ -1,15 +1,14 @@
 class Solution {
 public:
-    int fn(int i, vector<int>&dp, vector<int>& cost){
+    int fn(int i, vector<int>&cost, vector<int>&dp){
         if(i==0 || i==1)return 0;
         if(dp[i]!=-1)return dp[i];
-        int a=cost[i-1]+fn(i-1, dp, cost);
-        int b=cost[i-2]+fn(i-2, dp, cost);
-        return dp[i]=min(a,b);
+        
+        return dp[i]=min(cost[i-1]+fn(i-1,cost,dp),  cost[i-2]+fn(i-2,cost,dp));
     }
     int minCostClimbingStairs(vector<int>& cost) {
         int n=cost.size();
-        vector<int>dp(n+1, -1);
-        return fn(n,dp, cost);
+        vector<int>dp(n+1,-1);
+        return fn(n,cost,dp);
     }
 };
