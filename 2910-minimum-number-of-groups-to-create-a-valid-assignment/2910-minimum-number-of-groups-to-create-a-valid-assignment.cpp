@@ -24,7 +24,7 @@ public:
                     if(cur%a==0)mn=ckt+cur/a;
                     cur-=b; ckt++;
                 }
-                if(mn==INT_MAX){ 
+                if(mn==INT_MAX){ //means it doesn't have any 'a'
                     notpossible=true; break;
                 }
                 num+=mn; //add current count
