@@ -29,6 +29,7 @@ public:
                 }
                 num+=mn; //add current count
             }
+            //num stores the total counts of grps for any particular 'a' and 'b'
             if(!notpossible){ //not posible is false => means possible
                 ans=min(ans, num);
             }
