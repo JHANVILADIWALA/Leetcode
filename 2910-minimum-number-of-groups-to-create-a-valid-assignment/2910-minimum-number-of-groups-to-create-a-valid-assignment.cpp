@@ -29,7 +29,7 @@ public:
                 }
                 num+=mn; //add current count
             }
-            if(!notpossible){
+            if(!notpossible){ //not posible is false => means possible
                 ans=min(ans, num);
             }
             
