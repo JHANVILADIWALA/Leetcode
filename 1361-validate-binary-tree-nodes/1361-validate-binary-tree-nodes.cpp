@@ -10,11 +10,11 @@ public:
             
             if(m.find(leftc)!=m.end() || m.find(rightc)!=m.end())return false;
             
-            if(leftc!=-1 && m.find(leftc)==m.end()){
+            if(leftc!=-1){
                 m[leftc]=i;
                 adj[i].push_back(leftc);
             }
-            if(rightc!=-1 && m.find(rightc)==m.end()){
+            if(rightc!=-1){
                 m[rightc]=i;
                 adj[i].push_back(rightc);
             }
