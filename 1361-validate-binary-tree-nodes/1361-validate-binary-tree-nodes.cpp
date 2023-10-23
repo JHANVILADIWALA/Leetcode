@@ -32,7 +32,6 @@ public:
         
         //check that u can visit all the nodes from root
         //dfs/bfs
-        
         int ckt=0;
         queue<int>q;
         vector<bool>vis(n,false);
