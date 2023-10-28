@@ -3,7 +3,7 @@ class Solution {
     #define pb push_back
 public:
 int mod=1e9+7;
-    int fn(int ckt, char prev, int n, vector<map<char,int>>&dp){
+    int fn(int ckt, char prev, int n, vector<unordered_map<char,int>>&dp){
         if(ckt==n)return 1;
         
         if(dp[ckt].find(prev)!=dp[ckt].end())return dp[ckt][prev];
@@ -30,7 +30,7 @@ int mod=1e9+7;
         return dp[ckt][prev]=ways%mod;
     }
     int countVowelPermutation(int n) {
-        vector<map<char,int>>dp(n+1);
+        vector<unordered_map<char,int>>dp(n+1);
         return fn(0,'#',n, dp);
     }
 };
