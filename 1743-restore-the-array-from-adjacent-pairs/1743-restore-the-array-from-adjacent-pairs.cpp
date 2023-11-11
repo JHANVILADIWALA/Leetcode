@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int>ans;
-    void dfs(map<int,vector<int>>&adj, int curr, int prev){
+    void dfs(unordered_map<int,vector<int>>&adj, int curr, int prev){
         ans.push_back(curr);
         for(auto it: adj[curr]){
             if(it!=prev){
@@ -11,7 +11,7 @@ public:
     }
     vector<int> restoreArray(vector<vector<int>>& adjp) {
         int n=adjp.size();
-        map<int,vector<int>>adj;
+        unordered_map<int,vector<int>>adj;
         
         for(auto it: adjp){
             int u=it[0];
