@@ -26,11 +26,13 @@ public:
             for(int i=0; i<4; i++){
                 int nrow=row+dr[i], ncol=col+dc[i];
                 if(nrow>=0 && nrow<n && ncol>=0 && ncol<m ){
+                    
                     int neweffort=max(abs(v[row][col]-v[nrow][ncol]), diff);
                     if(neweffort<dist[nrow][ncol]){
                         dist[nrow][ncol]=neweffort;
                         pq.push({neweffort,{nrow,ncol}});
                     }
+                    
                 }
             }
         }
