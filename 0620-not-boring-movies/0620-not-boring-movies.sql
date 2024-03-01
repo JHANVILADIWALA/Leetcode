@@ -1,0 +1,5 @@
+# Write your MySQL query statement below
+
+SELECT * FROM CINEMA
+WHERE DESCRIPTION != 'BORING' AND mod(ID,2) != 0
+ORDER BY RATING DESC
