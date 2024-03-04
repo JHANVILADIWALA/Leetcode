@@ -1,7 +1,5 @@
 class Solution {
 public:
-    int dp[1001][1001];
-    
     int solve(int cb, int aos, int n){
         if(aos>n)return 100000000;
         if(aos==n)return 0;
